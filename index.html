@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angel's page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./photos/heart-png.webp" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/b05e4d181f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkBtn">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <ul>
+                <li><a href="./index.html">HOME</a></li>
+                <li><a href="adventures.html">RECUERDOS BONITOS</a></li>
+                <li><a href="thanks.html">DETALLES</a></li>
+                <li><a href="him.html">PARA TI</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="splash" style="flex-direction: column;">29 / 05 / 24 <i class="fa-solid fa-heart"></i></div>
+    
+    <main id="body" style="display: none;">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./photos/picture1.jpg" class="d-block w-100" alt="US">
+                    <div style="color: #ffffff;" class="carousel-caption">
+                        <h5 style="font-family: cursive;">¡Feliz aniversario!</h5>
+                        <audio id="myAudio" src="./audio/LaBoda.mp3"></audio>
+                        <i class="fa-solid fa-backward audio" onclick="changeMusic(-1)"></i>
+                        <i id="icon" style="margin-left: 40px; margin-right: 40px;" class="fa-solid fa-play" onclick="playMusic()"></i>
+                        <i class="fa-solid fa-forward audio" onclick="changeMusic(1)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="intro">
+            <p>Este sitio no es solo una página, es un pequeño regalo hecho con mucho amor. Quise recordarte lo  
+                mucho que me haces reir, cada bonito recuerdo que hemos creado y sobre todo recordarte porque me
+                enamore de ti. Espero que te guste tanto como me gustas tú. 👻❤️</p>
+        </div>
+        <h1 id="title">Todo lo que nos llevó hasta aquí...</h1>
+        <p id="p">Aún no puedo creer que eres mi novio y que estamos cumpliendo nuestro primer añito juntos</p>
+        <div class="card">
+            <img src="./photos/picture2.jpg" class="card-img-top" alt="US">
+            <div class="card-body">
+                <p>Todavía puedo recordar el día que te conocí, ese día solo tenía la intención de saber tu nombre
+                    no tenía idea que nos ibamos a hacer comadritas y que te iba a tener tanto cariño. Duramos 
+                    mucho tiempo como amigos y desde ahí eras muy importante para mi, casi no nos veíamos pero
+                    sí te consideraba una de las mejores amistades que tenía. Solo eramos amigos pero yo sabía
+                    que tenías un corazón precioso porque hasta como amigo lo demostrabas.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="./photos/picture3.jpg" class="card-img-top" alt="US">
+            <div class="card-body">
+                <p>La verdad amaba ir a verte, nomás nos veíamos una vez al año 😂 pero en serio me gustaba mucho
+                    verte, y no se tú, pero cuando sabia que te iba a ver andaba feliz todo el día, saliamos un ratito 
+                    y ya regresaba a casita feliz (ya ves tontin, señales de que teniamos que estar juntos).</p>
+                <p>En fin, ya sabes que la última salida fue donde comenzo todo, sigo creyendo que ya era nuestro
+                    momento de ser novios porque cuando no se podía, no saliamos y ya, pero ese día se arreglo todo
+                    para poder vernos y sigo diciendo que tenía que ser hasta ahorita para estar juntos toda la vida.
+                    Pero nunca pense que cambiaria tanto mi vida gracias a esa salida al cine. Desde esa salida,
+                    tengo un novio espectacular y una persona a la cuál adoro.</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="./photos/picture5.jpg" class="card-img-top" alt="US">
+            <div class="card-body">
+                <p>La verdad estamos bien mensitos para ligar pero aún recuerdo que estaba super confundida al inicio
+                    pero cuando vi que realmente querías algo más me empece a ilusionar muchisimo porque en serio tu
+                    me gustabas mucho, pero después de tanto tiempo lo veía imposible que fueramos novios. Cuando 
+                    comenzamos a hablar sobre lo que queríamos estaba aterrada porque no quería perder a mi comadrita 
+                    por intentar algo más.</p>
+                <p>Pero gracias a Dios todo salio muy bien, nos amamos muchismo y tengo un millón de planes a tu lado.
+                    Y aquí estamos cumpliendo nuestro primer año, te juro que es la mejor decisión que he tomado, amo
+                    ser tu novia y amo ser amada por alguien tan increíble como tú.</p>
+            </div>
+        </div>
+    </main>
+</body>
+
+<script>
+    function playMusic() {
+        var audio = document.getElementById("myAudio");
+        var icon = document.getElementById("icon");
+
+        if (audio.paused) {
+            audio.play();
+            icon.classList.remove("fa-play");
+            icon.classList.add("fa-pause");
+        } else {
+            audio.pause();
+            icon.classList.add("fa-play");
+            icon.classList.remove("fa-pause");
+        }
+    }
+
+    let songs = ["./audio/Compartir.mp3", "./audio/RegaloDeDios.mp3", "./audio/SiSupieras.mp3", "./audio/LaBoda.mp3"];
+    let index = 0;
+
+    function changeMusic(direction) {
+        index = (index + direction + songs.length) % songs.length; 
+        let audio = document.getElementById("myAudio");
+        audio.src = songs[index];
+        audio.play();
+    }
+
+    setTimeout(() => {
+        document.getElementById("splash").style.opacity = "0";
+        setTimeout(() => {
+            document.getElementById("splash").style.display = "none";
+            document.getElementById("body").style.display = "block";
+        }, 1000);
+    }, 3000);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat con Indicador de Escritura</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .chat-container {
+            width: 350px;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+        .chat-box {
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            max-width: 80%;
+        }
+        .message-left {
+            background: #ddd;
+            align-self: flex-start;
+        }
+        .message-right {
+            background: #ff7f50;
+            color: white;
+            align-self: flex-end;
+            text-align: right;
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px;
+            border-radius: 10px;
+            background: #ddd;
+            width: fit-content;
+        }
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #555;
+            border-radius: 50%;
+            animation: blink 1s infinite alternate;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes blink {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox"></div>
+    </div>
+
+    <audio id="messageSound" src="mensaje.mp3"></audio>
+
+    <script>
+        let mensajes = [
+            { texto: "¿Recuerdas nuestro primer viaje juntos? 😍", lado: "left" },
+            { texto: "¡Claro! Fue increíble. 🌍✨", lado: "right" },
+            { texto: "Ese día en la playa fue perfecto. 🏖️", lado: "left" },
+            { texto: "Sí, y la puesta de sol... inolvidable. 🌅", lado: "right" }
+        ];
+
+        let index = 0;
+
+        function agregarMensaje() {
+            let chatBox = document.getElementById("chatBox");
+
+            if (index < mensajes.length) {
+                if (mensajes[index].lado === "left") {
+                    // Mostrar indicador de escritura solo en los mensajes del lado izquierdo
+                    let typingIndicator = document.createElement("div");
+                    typingIndicator.classList.add("typing-indicator");
+                    typingIndicator.innerHTML = "<span></span><span></span><span></span>";
+                    chatBox.appendChild(typingIndicator);
+
+                    setTimeout(() => {
+                        // Eliminar el indicador y mostrar el mensaje real
+                        chatBox.removeChild(typingIndicator);
+                        mostrarMensaje();
+                    }, 2000); // Tiempo de escritura antes de mostrar el mensaje
+                } else {
+                    // Mostrar los mensajes del lado derecho sin indicador de escritura
+                    mostrarMensaje();
+                }
+
+                setTimeout(agregarMensaje, 5000); // Agregar siguiente mensaje en 5 segundos
+            }
+        }
+
+        function mostrarMensaje() {
+            let chatBox = document.getElementById("chatBox");
+            let nuevoMensaje = document.createElement("div");
+            nuevoMensaje.classList.add("message");
+            nuevoMensaje.classList.add(mensajes[index].lado === "left" ? "message-left" : "message-right");
+            nuevoMensaje.textContent = mensajes[index].texto;
+            chatBox.appendChild(nuevoMensaje);
+
+            // Reproducir sonido
+            document.getElementById("messageSound").play();
+
+            index++;
+        }
+
+        setTimeout(agregarMensaje, 5000); // Iniciar después de 5 segundos
+    </script>
+
+</body>
+</html>

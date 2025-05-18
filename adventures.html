@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angel's page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./photos/heart-png.webp" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/b05e4d181f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkBtn">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+            <ul>
+                <li><a href="./index.html">HOME</a></li>
+                <li><a href="adventures.html">RECUERDOS BONITOS</a></li>
+                <li><a href="thanks.html">DETALLES</a></li>
+                <li><a href="him.html">PARA TI</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="chat-container">
+            <div class="chat-box" id="chatBox"></div>
+        </div>
+    </main>
+        
+    <script>
+        let messages = [
+            { text: "Desde ese día el mundo tiene más sentido porque lo comparto contigo 🥰", side: "left", img: "photos/picture6.png" },
+            { text: "Ese día me dio miedo subirme al barco, pero por lo menos no vomitamos 👻", side: "right", img: "/photos/picture7.png" },
+            { text: "Ese día estabamos muy nerviosos pero aún así me gustó, de alguna manera me conecte más a ti 🥺", side: "left", img: "/photos/picture19.png" },
+            { text: "Ni porque soy tu novia me dejabas ganar 😭", side: "right", img: "/photos/picture8.png" },
+            { text: "Qué bonito lego hicimos, pero más bonito el amor que te tengo 🥰", side: "left", img: "/photos/picture9.png" },
+            { text: "Ame ese día porque parecías niño chiquito en el VIP 🥰", side: "right", img: "/photos/picture10.png" },
+            { text: "Me encanto ir al zoologico contigo, fue un día super tranquilo y bonito ❤️", side: "left", img: "/photos/picture11.png" },
+            { text: "Gracias por llevarme a ver Shrek 🥺", side: "right", img: "/photos/picture12.png" },
+            { text: "No sé porque pero me gustó ese día y el siguiente asi que lo quise poner 👻", side: "left", img: "/photos/picture13.png" },
+            { text: "Pero me gustó mucho más tu regreso de vacaciones 👻❤️", side: "right", img: "/photos/picture14.png" },
+            { text: "Ame estar riéndome como tontitos toda la noche 🥰", side: "left", img: "/photos/picture15.png" },
+            { text: "Gracias por consentirme y armar una casita conmigo 🥺", side: "right", img: "/photos/picture16.png" },
+            { text: "Fue nuestra primer navidad juntos y ame tu reacción con la moto 🥰", side: "left", img: "/photos/picture17.png" },
+            { text: "Necesito que estes conmigo en cada fecha bonita del año para disfrutarla contigo 🥺", side: "right", img: "/photos/picture18.png" },
+            { text: "Mi cumpleaños es muy dificil para mi, pero gracias por estar conmigo ese día 🥺", side: "left", img: "/photos/picture20.png" },
+            { text: "Ese día ni habia lucecitas 😭", side: "right", img: "/photos/picture21.png" },
+            { text: "Pero como niña consentida que soy, si fuimos a verlas después 🥰", side: "left", img: "/photos/picture22.png" },
+            { text: "Gracias por dejarme estar contigo, te juro que amo verte feliz ❤️", side: "right", img: "/photos/picture23.png" },
+            { text: "En fin, me encanta crear todo tipo de recuerdos contigo ❤️", side: "left", img: "/photos/picture25.png" },
+            { text: "Y en serio, todos los días son bonitos si estás tú ❤️", side: "left", img: null },
+        ];
+
+        let index = 0;
+
+        function addMessage() {
+            let chatBox = document.getElementById("chatBox");
+
+            if (index < messages.length) {
+                if (messages[index].side === "left") {
+                    let typingIndicator = document.createElement("div");
+                    typingIndicator.classList.add("typing-indicator");
+                    typingIndicator.innerHTML = "<span></span><span></span><span></span>";
+                    chatBox.appendChild(typingIndicator);
+
+                    setTimeout(() => {
+                        chatBox.removeChild(typingIndicator);
+                        showMessage();
+                    }, 2000);
+                } else {
+                    showMessage();
+                }
+
+                setTimeout(addMessage, 4000); 
+            }
+        }
+
+        function showMessage() {
+            let chatBox = document.getElementById("chatBox");
+            let newMessage = document.createElement("div");
+            newMessage.classList.add("message");
+            newMessage.classList.add(messages[index].side === "left" ? "message-left" : "message-right");
+            newMessage.innerHTML = `<p>${messages[index].text}</p>` + (messages[index].img ? `<img src="${messages[index].img}" alt="Imagen">` : "");
+            chatBox.appendChild(newMessage);
+            setTimeout(() => {
+                newMessage.style.opacity = "1";
+                newMessage.style.transition = "opacity 0.5s ease-in-out";
+                chatBox.parentElement.scrollTop = chatBox.parentElement.scrollHeight;
+            }, 100);
+            index++;
+        }
+        setTimeout(addMessage, 500); 
+    </script>
+</body>
+</html>
