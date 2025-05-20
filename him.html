@@ -25,7 +25,116 @@
         </nav>
     </header>
     <main>
-        
+        <div id="container">
+            <div class="card" id="card">
+                <div class="face front" id="puzzle"></div>
+                    <div class="face back">
+                        <div>
+                            <p>Quiero recordarte lo mucho que te amo y lo muhco que te admiro. Aún sigo pendando
+                                que eres Mi Angel y me has salvado de una y mil maneras. Este año me ha 
+                                encantado conocerte, aprender sobre ti y saber que te gusta y que te hace feliz.
+                                De verdad, quiero pasar el resto de mi vida contigo, construyendo un futuro lleno
+                                de amor y felicidad. Sueño con una familia y un hogar lleno de amor contigo.
+                                En fin, te amo con toda mi alma y siempre que me lo permitas estare en las 
+                                buenas y en las malas. Por cierto, amo la manera en la que me haces feliz y en
+                                la forma que me amas.</p>
+                            <p>!Feliz aniversario amor mío¡ ❤️</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </main>
+
+    <script>
+        const puzzle = document.getElementById("puzzle");
+        const card = document.getElementById("card");
+        const message = document.getElementById("message");
+
+        const gridSize = 4;
+        const pieceSize = 90;
+
+        const positions = [];
+        for (let y = 0; y < gridSize; y++) {
+            for (let x = 0; x < gridSize; x++) {
+                positions.push({ x: -x * pieceSize, y: -y * pieceSize });
+            }
+        }
+
+        const correctOrder = [...positions];
+        const shuffled = [...positions];
+
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+
+        shuffled.forEach((pos, i) => {
+            const piece = document.createElement("div");
+            piece.className = "piece";
+            piece.style.width = pieceSize + "px";
+            piece.style.height = pieceSize + "px";
+            piece.style.backgroundPosition = `${pos.x}px ${pos.y}px`;
+            piece.dataset.correct = `${correctOrder[i].x},${correctOrder[i].y}`;
+            piece.dataset.current = `${pos.x},${pos.y}`;
+            piece.draggable = true;
+            puzzle.appendChild(piece);
+        });
+
+        let dragged;
+        puzzle.addEventListener("dragstart", e => {
+            dragged = e.target;
+        });
+
+        puzzle.addEventListener("dragover", e => {
+            e.preventDefault();
+        });
+
+        puzzle.addEventListener("drop", e => {
+            if (e.target.classList.contains("piece") && e.target !== dragged) {
+                swapPieces(dragged, e.target);
+            }
+        });
+
+        let firstTap = null;
+        puzzle.addEventListener("click", e => {
+            if (!e.target.classList.contains("piece")) return;
+                if (!firstTap) {
+                    firstTap = e.target;
+                    firstTap.style.outline = "3px solid #f06292";
+                } else {
+                    if (e.target !== firstTap) {
+                        swapPieces(firstTap, e.target);
+                    }
+                firstTap.style.outline = "none";
+                firstTap = null;
+            }
+        });
+
+        function swapPieces(a, b) {
+            const tempPos = a.style.backgroundPosition;
+            const tempData = a.dataset.current;
+
+            a.style.backgroundPosition = b.style.backgroundPosition;
+            a.dataset.current = b.dataset.current;
+
+            b.style.backgroundPosition = tempPos;
+            b.dataset.current = tempData;
+
+            checkCompletion();
+        }
+
+        function checkCompletion() {
+            const pieces = document.querySelectorAll(".piece");
+            const allCorrect = [...pieces].every(p => p.dataset.current === p.dataset.correct);
+            if (allCorrect) {
+                message.style.display = "block";
+                puzzle.style.pointerEvents = "none";
+                card.addEventListener("click", () => {
+                    card.classList.add("flipped");
+                    message.style.display = "none";
+                }, { once: true });
+            }
+        }    
+    </script>
 </body>
 </html>

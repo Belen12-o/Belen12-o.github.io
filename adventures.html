@@ -67,6 +67,7 @@
                     typingIndicator.classList.add("typing-indicator");
                     typingIndicator.innerHTML = "<span></span><span></span><span></span>";
                     chatBox.appendChild(typingIndicator);
+                    chatBox.parentElement.scrollTop = chatBox.parentElement.scrollHeight;
 
                     setTimeout(() => {
                         chatBox.removeChild(typingIndicator);
