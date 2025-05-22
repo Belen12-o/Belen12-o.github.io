@@ -96,7 +96,7 @@
         });
 
         let firstTap = null;
-        puzzle.addEventListener("click", e => {
+        puzzle.addEventListener("pointerdown", e => {
             if (!e.target.classList.contains("piece")) return;
                 if (!firstTap) {
                     firstTap = e.target;
