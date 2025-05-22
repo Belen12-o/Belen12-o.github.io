@@ -129,12 +129,13 @@
             if (allCorrect) {
                 message.style.display = "block";
                 puzzle.style.pointerEvents = "none";
-                card.addEventListener("pointerdown", () => {
-                    card.classList.add("flipped");
-                    message.style.display = "none";
-                }, { once: true });
+
+            setTimeout(() => {
+                card.classList.add("flipped");
+                message.style.display = "none";
+            }, 2000);
             }
-        }    
+        }
     </script>
 </body>
 </html>
