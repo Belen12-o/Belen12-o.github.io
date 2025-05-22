@@ -61,7 +61,7 @@ nav ul li a {
 
 .chat-container {
     width: 100%;
-    background-image: url("./photos/picture24.png");
+    background-image: url("../photos/picture24.png");
     padding: 15px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     overflow-y: auto;
