@@ -59,62 +59,6 @@ nav ul li a {
     left: 0;
 }
 
-#intro, #splash {
-    padding: 20px;
-    text-align: justify;   
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;  
-}
-
-#title {
-    font-family: "Playwrite DK Loopet", cursive;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 25px;
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
-.card {
-    width: 23rem; 
-    margin: 20px;
-    margin-bottom: 30px; 
-    border-radius: 47px;
-}
-
-.card img {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    border-radius: 47px;
-    width: 20rem;    
-}
-
-.card-body, #p {
-    margin: 20px;
-    text-align: justify;   
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-
-#splash {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-family: Arial, sans-serif;
-    transition: opacity 1s ease-out;
-}
-
-
 .chat-container {
     width: 100%;
     background-image: url("./photos/picture24.png");
@@ -204,69 +148,6 @@ nav ul li a {
 @keyframes blink {
     0% { opacity: 0.3; }
     100% { opacity: 1; }
-}
-
-#container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1000px;
-    padding: 20px 0;
-}
-
-.cardh {
-    width: 90vw;
-    height: 90vw;
-    max-width: 370px;
-    max-height: 370px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s ease-in-out;
-}
-
-.piece {
-  width: 100%;
-  height: 100%;
-  background-image: url('./photos/picture1.jpg');
-  background-size: 400% 400%;
-  cursor: pointer;
-}
-
-.flipped {
-    transform: rotateY(180deg);
-}
-
-.face {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.front {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 2px;
-    background: #000;
-}
-
-
-.back {
-    background: #ffe4e1;
-    transform: rotateY(180deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    text-align: justify;
-    font-size: 14px;
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
 }
 
 @media (max-width: 720px) {

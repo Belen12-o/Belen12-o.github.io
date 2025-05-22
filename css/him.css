@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+DK+Loopet:wght@100..400&display=swap');
+
+body {
+    background-color: #F29696;
+}
+
+header {
+    display: block;
+    width: 100%;
+    height: 70px;
+}
+
+nav ul li a {
+  color: rgb(201, 253, 253);
+  font-size: 18px;
+  padding: 7px 13px;
+  text-decoration: none;
+}
+
+.checkBtn {
+  font-size: 30px;
+  color: azure;
+  float: right;
+  line-height: 70px;
+  margin-right: 20px;
+  display: none;
+}
+
+#check {
+  display: none;
+}
+
+ul {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(43, 43, 43);
+    top: 70px;
+    left: 100%;
+    text-align: center;
+    transition: all .5s;
+}
+
+nav {
+    position: relative;
+    z-index: 9999;
+    width: 100%;
+}
+  
+nav ul li {
+    display: block;
+}
+
+nav ul li a {
+    font-size: 20px;
+}
+
+#check:checked ~ ul {
+    left: 0;
+}
+
+#container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    padding: 20px 0;
+}
+
+.cardh {
+    width: 90vw;
+    height: 90vw;
+    max-width: 370px;
+    max-height: 370px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
+}
+
+.piece {
+  width: 100%;
+  height: 100%;
+  background-image: url('./photos/picture1.jpg');
+  background-size: 400% 400%;
+  cursor: pointer;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.front {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 2px;
+    background: #000;
+}
+
+
+.back {
+    background: #ffe4e1;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: justify;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@media (max-width: 720px) {
+    .checkBtn {
+        display: block;
+    }
+}
