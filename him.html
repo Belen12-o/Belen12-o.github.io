@@ -129,7 +129,7 @@
             if (allCorrect) {
                 message.style.display = "block";
                 puzzle.style.pointerEvents = "none";
-                card.addEventListener("click", () => {
+                card.addEventListener("pointerdown", () => {
                     card.classList.add("flipped");
                     message.style.display = "none";
                 }, { once: true });
