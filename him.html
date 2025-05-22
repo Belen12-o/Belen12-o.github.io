@@ -51,12 +51,11 @@
         const message = document.getElementById("message");
 
         const gridSize = 4;
-        const pieceSize = 90;
-
         const positions = [];
+
         for (let y = 0; y < gridSize; y++) {
             for (let x = 0; x < gridSize; x++) {
-                positions.push({ x: -x * pieceSize, y: -y * pieceSize });
+                positions.push({ x: `${-x * 100}%`, y: `${-y * 100}%` });
             }
         }
 
@@ -71,9 +70,7 @@
         shuffled.forEach((pos, i) => {
             const piece = document.createElement("div");
             piece.className = "piece";
-            piece.style.width = pieceSize + "px";
-            piece.style.height = pieceSize + "px";
-            piece.style.backgroundPosition = `${pos.x}px ${pos.y}px`;
+            piece.style.backgroundPosition = `${pos.x} ${pos.y}`;
             piece.dataset.correct = `${correctOrder[i].x},${correctOrder[i].y}`;
             piece.dataset.current = `${pos.x},${pos.y}`;
             piece.draggable = true;
@@ -127,12 +124,10 @@
             const pieces = document.querySelectorAll(".piece");
             const allCorrect = [...pieces].every(p => p.dataset.current === p.dataset.correct);
             if (allCorrect) {
-                message.style.display = "block";
                 puzzle.style.pointerEvents = "none";
 
             setTimeout(() => {
                 card.classList.add("flipped");
-                message.style.display = "none";
             }, 2000);
             }
         }
