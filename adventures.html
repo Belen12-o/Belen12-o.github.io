@@ -13,7 +13,7 @@
 <body>
     <main>
         <div class="header">
-            <i class="fa-solid fa-arrow-left" style="margin-right: 10px;"></i>
+            <a href="./him.html" style="margin-right: 10px; color: white;"><i class="fa-solid fa-arrow-left"></i></a>
             <img src="./photos/picture25.png" alt="Foto de perfil" class="profile-pic">
             <div class="name">Mi amor</div>
             <div class="options" onclick="toggleMenu()">⋮</div>
@@ -100,7 +100,7 @@
         let menu = document.getElementById("menu");
         menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
-
+ 
     document.addEventListener("click", function(event) {
         let options = document.querySelector(".options");
         let menu = document.getElementById("menu");
