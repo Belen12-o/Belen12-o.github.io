@@ -33,8 +33,7 @@ body {
 }
 
 .card {
-    width: 23rem;
-    margin-bottom: 30px; 
+    width: 23rem; 
     border-radius: 47px;
     background-color: #e0cba8;
     max-width: 90%;
@@ -51,7 +50,7 @@ body {
 }
 
 .card-body, #p {
-    margin: 20px;
+    margin: 10px;
     text-align: justify;   
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
