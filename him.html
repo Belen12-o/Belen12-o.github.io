@@ -18,13 +18,6 @@
         <p style="margin-bottom: 5px;">A ver de que tanto te acuerdas</p>
         <p id="level">Nivel fácil</p>
 
-        <div id="customAlert" class="overlay">
-            <div class="alert-box">
-                <p>¿Cómo que no sabes? 😔</p>
-                <button onclick="closeCustomAlert()">Intentar otra vez</button>
-            </div>
-        </div>
-
         <div id="sala1" class="sala visible">
             <h4>¿En que mes es mi cumpleaños?</h4>
             <input type="text" id="respuesta1" placeholder="Escribe tu respuesta">
@@ -169,12 +162,8 @@
             document.getElementById(inputId).parentElement.classList.remove("visible");
             document.getElementById(siguienteSala).classList.add("visible");
         } else {
-            document.getElementById("customAlert").classList.add("visible");
+            alert("¿Cómo que no sabes? 😔");
         }
-    }
-
-    function closeCustomAlert() {
-        document.getElementById("customAlert").classList.remove("visible"); 
     }
 </script>
 </html>
