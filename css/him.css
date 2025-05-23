@@ -121,7 +121,7 @@ a {
 
 
 .overlay {
-    display: none;
+    display: none !important;
     position: fixed;
     top: 0;
     left: 0;
