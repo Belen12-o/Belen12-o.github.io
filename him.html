@@ -18,6 +18,13 @@
         <p style="margin-bottom: 5px;">A ver de que tanto te acuerdas</p>
         <p id="level">Nivel fácil</p>
 
+        <div id="customAlert" class="overlay">
+            <div class="alert-box">
+                <p>¿Cómo que no sabes? 😔</p>
+                <button onclick="closeCustomAlert()">Intentar otra vez</button>
+            </div>
+        </div>
+
         <div id="sala1" class="sala visible">
             <h4>¿En que mes es mi cumpleaños?</h4>
             <input type="text" id="respuesta1" placeholder="Escribe tu respuesta">
@@ -42,7 +49,7 @@
             <button onclick="verificarRespuesta('respuesta4', 'princesa', 'final')">Enviar</button>
         </div>
 
-        <div id="final" class="sala" style="height: 195px;">
+        <div id="final" class="sala" style="height: 190px;">
             <h2>¡Felicidades, si le sabes! 🎉</h2>
             <p>Gracias por recordar hasta esas minimas cosas. ❤️</p>
             <p id="x" style="font-size: small;">(O atinarle tramposillo 😾)</p>
@@ -73,7 +80,6 @@
 <script>
     const puzzle = document.getElementById("puzzle");
     const card = document.getElementById("card");
-    const message = document.getElementById("message");
 
     const gridSize = 4;
     const positions = [];
@@ -163,8 +169,12 @@
             document.getElementById(inputId).parentElement.classList.remove("visible");
             document.getElementById(siguienteSala).classList.add("visible");
         } else {
-            alert("¡Intenta de nuevo! 🌟");
+            document.getElementById("customAlert").style.display = "flex";
         }
+    }
+
+    function closeCustomAlert() {
+        document.getElementById("customAlert").style.display = "none"; 
     }
 </script>
 </html>
