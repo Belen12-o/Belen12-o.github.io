@@ -169,12 +169,12 @@
             document.getElementById(inputId).parentElement.classList.remove("visible");
             document.getElementById(siguienteSala).classList.add("visible");
         } else {
-            document.getElementById("customAlert").style.display = "flex";
+            document.getElementById("customAlert").classList.add("visible");
         }
     }
 
     function closeCustomAlert() {
-        document.getElementById("customAlert").style.display = "none"; 
+        document.getElementById("customAlert").classList.remove("visible"); 
     }
 </script>
 </html>
