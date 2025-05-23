@@ -33,11 +33,13 @@ body {
 }
 
 .card {
-    width: 23rem; 
-    margin: 20px;
+    width: 23rem;
     margin-bottom: 30px; 
     border-radius: 47px;
     background-color: #e0cba8;
+    max-width: 90%;
+    min-width: 280px; 
+    margin: 20px auto;
 }
 
 .card img {

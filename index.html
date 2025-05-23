@@ -20,7 +20,7 @@
                     <img src="./photos/picture1.jpg" class="d-block w-100" alt="US">
                     <div style="color: #ffffff;" class="carousel-caption">
                         <h5 style="font-family: cursive;">¡Feliz aniversario!</h5>
-                        <audio id="myAudio" src="./audio/LaBoda.mp3"></audio>
+                        <audio id="myAudio" src="./audio/SiSupieras.mp3"></audio>
                         <i class="fa-solid fa-backward audio" onclick="changeMusic(-1)"></i>
                         <i id="icon" style="margin-left: 40px; margin-right: 40px;" class="fa-solid fa-play" onclick="playMusic()"></i>
                         <i class="fa-solid fa-forward audio" onclick="changeMusic(1)"></i>
@@ -91,13 +91,17 @@
         }
     }
 
-    let songs = ["./audio/Compartir.mp3", "./audio/RegaloDeDios.mp3", "./audio/SiSupieras.mp3", "./audio/LaBoda.mp3"];
+    let songs = ["./audio/Compartir.mp3", "./audio/RegaloDeDios.mp3", "./audio/LaBoda.mp3", "./audio/SiSupieras.mp3"];
     let index = 0;
 
     function changeMusic(direction) {
         index = (index + direction + songs.length) % songs.length; 
         let audio = document.getElementById("myAudio");
         audio.src = songs[index];
+        if (audio.played) {
+            icon.classList.add("fa-pause");
+            icon.classList.remove("fa-play");
+        } 
         audio.play();
     }
 
