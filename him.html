@@ -11,8 +11,8 @@
 </head>
 <body>
     <main>
-        <p>A ver de que tanto te acuerdas</p>
-        <p>Nivel fácil</p>
+        <p style="margin-bottom: 5px;">A ver de que tanto te acuerdas</p>
+        <p id="level">Nivel fácil</p>
 
         <div id="sala1" class="sala visible">
             <h4>¿En que mes es mi cumpleaños?</h4>
@@ -21,31 +21,31 @@
         </div>
 
         <div id="sala2" class="sala">
-            <h2>¿Una de mis cosas favoritas de ti (fisicamente)?</h2>
+            <h4>¿Una de mis cosas favoritas de ti (fisicamente)?</h4>
             <input type="text" id="respuesta2" placeholder="Escribe tu respuesta">
             <button onclick="verificarRespuesta('respuesta2', 'pomulos', 'sala3')">Enviar</button>
         </div>
 
         <div id="sala3" class="sala">
-            <h2>¿Qué película de Shrek me llevaste a ver (uno o dos)?</h2>
+            <h4>¿Qué película de Shrek me llevaste a ver (uno o dos)?</h4>
             <input type="text" id="respuesta3" placeholder="Escribe tu respuesta">
             <button onclick="verificarRespuesta('respuesta3', 'dos', 'sala4')">Enviar</button>
         </div>
 
         <div id="sala4" class="sala">
-            <h2>Me dices de muchas maneras pero, ¿cuál es mi favorita?</h2>
+            <h4>Me dices de muchas maneras pero, ¿cuál es mi favorita?</h4>
             <input type="text" id="respuesta4" placeholder="Escribe tu respuesta">
             <button onclick="verificarRespuesta('respuesta4', 'princesa', 'final')">Enviar</button>
         </div>
 
-        <div id="final" class="sala">
+        <div id="final" class="sala" style="height: 195px;">
             <h2>¡Felicidades, si le sabes! 🎉</h2>
             <p>Gracias por recordar hasta esas minimas cosas. ❤️</p>
-            <p>O atinarle tramposillo 😾</p>
+            <p id="x" style="font-size: small;">(O atinarle tramposillo 😾)</p>
             <a href="./adventures.html">Siguiente</a>
         </div>
         
-        <div id="container">
+        <div id="container"> 
             <div class="cardh" id="card">
                 <div class="face front" id="puzzle"></div>
                 <div class="face back">
@@ -154,8 +154,8 @@
     }
 
     function verificarRespuesta(inputId, respuestaCorrecta, siguienteSala) {
-        const respuestaUsuario = document.getElementById(inputId).value.toLowerCase().trim(); // Convierte a minúsculas
-        if (respuestaUsuario === respuestaCorrecta.toLowerCase()) { // Compara ambas en minúsculas
+        const respuestaUsuario = document.getElementById(inputId).value.toLowerCase().trim(); 
+        if (respuestaUsuario === respuestaCorrecta.toLowerCase()) { 
             document.getElementById(inputId).parentElement.classList.remove("visible");
             document.getElementById(siguienteSala).classList.add("visible");
         } else {
