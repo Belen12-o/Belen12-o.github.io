@@ -83,7 +83,6 @@ main {
     overflow-y: auto;
     top: 60px;
     bottom: 60px;
-    position: absolute;
 }
         
 .chat-box {
