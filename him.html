@@ -10,127 +10,157 @@
     <script src="https://kit.fontawesome.com/b05e4d181f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <input type="checkbox" id="check">
-            <label for="check" class="checkBtn">
-                <i class="fa-solid fa-bars"></i>
-            </label>
-            <ul>
-                <li><a href="./index.html">HOME</a></li>
-                <li><a href="adventures.html">RECUERDOS BONITOS</a></li>
-                <li><a href="thanks.html">DETALLES</a></li>
-                <li><a href="him.html">PARA TI</a></li>
-            </ul>
-        </nav>
-    </header>
     <main>
+        <p>A ver de que tanto te acuerdas</p>
+        <p>Nivel fácil</p>
+
+        <div id="sala1" class="sala visible">
+            <h4>¿En que mes es mi cumpleaños?</h4>
+            <input type="text" id="respuesta1" placeholder="Escribe tu respuesta">
+            <button onclick="verificarRespuesta('respuesta1', 'enero', 'sala2')">Enviar</button>
+        </div>
+
+        <div id="sala2" class="sala">
+            <h2>¿Una de mis cosas favoritas de ti (fisicamente)?</h2>
+            <input type="text" id="respuesta2" placeholder="Escribe tu respuesta">
+            <button onclick="verificarRespuesta('respuesta2', 'pomulos', 'sala3')">Enviar</button>
+        </div>
+
+        <div id="sala3" class="sala">
+            <h2>¿Qué película de Shrek me llevaste a ver (uno o dos)?</h2>
+            <input type="text" id="respuesta3" placeholder="Escribe tu respuesta">
+            <button onclick="verificarRespuesta('respuesta3', 'dos', 'sala4')">Enviar</button>
+        </div>
+
+        <div id="sala4" class="sala">
+            <h2>Me dices de muchas maneras pero, ¿cuál es mi favorita?</h2>
+            <input type="text" id="respuesta4" placeholder="Escribe tu respuesta">
+            <button onclick="verificarRespuesta('respuesta4', 'princesa', 'final')">Enviar</button>
+        </div>
+
+        <div id="final" class="sala">
+            <h2>¡Felicidades, si le sabes! 🎉</h2>
+            <p>Gracias por recordar hasta esas minimas cosas. ❤️</p>
+            <p>O atinarle tramposillo 😾</p>
+            <a href="./adventures.html">Siguiente</a>
+        </div>
+        
         <div id="container">
             <div class="cardh" id="card">
                 <div class="face front" id="puzzle"></div>
-                    <div class="face back">
-                        <div>
-                            <p>Quiero recordarte lo mucho que te amo y lo muhco que te admiro. Aún sigo pendando
-                                que eres Mi Angel y me has salvado de una y mil maneras. Este año me ha 
-                                encantado conocerte, aprender sobre ti y saber que te gusta y que te hace feliz.
-                                De verdad, quiero pasar el resto de mi vida contigo, construyendo un futuro lleno
-                                de amor y felicidad. Sueño con una familia y un hogar lleno de amor contigo.
-                                En fin, te amo con toda mi alma y siempre que me lo permitas estare en las 
-                                buenas y en las malas. Por cierto, amo la manera en la que me haces feliz y en
-                                la forma que me amas.</p>
-                            <p>!Feliz aniversario amor mío¡ ❤️</p>
-                        </div>
+                <div class="face back">
+                    <div>
+                        <p>Quiero recordarte lo mucho que te amo y lo muhco que te admiro. Aún sigo pensando
+                            que eres Mi Angel y me has salvado de una y mil maneras. Este año me ha 
+                            encantado conocerte, aprender sobre ti y saber que te gusta y que te hace feliz.
+                            De verdad, quiero pasar el resto de mi vida contigo, construyendo un futuro lleno
+                            de amor y felicidad. Sueño con una familia y un hogar lleno de amor contigo.
+                            En fin, te amo con toda mi alma y siempre que me lo permitas estare en las 
+                            buenas y en las malas. Por cierto, amo la manera en la que me haces feliz y en
+                            la forma que me amas.</p>
+                        <p>!Feliz aniversario amor mío¡ ❤️</p>
                     </div>
                 </div>
             </div>
+        </div>
     </main>
+</body>
 
-    <script>
-        const puzzle = document.getElementById("puzzle");
-        const card = document.getElementById("card");
-        const message = document.getElementById("message");
+<script>
+    const puzzle = document.getElementById("puzzle");
+    const card = document.getElementById("card");
+    const message = document.getElementById("message");
 
-        const gridSize = 4;
-        const positions = [];
+    const gridSize = 4;
+    const positions = [];
 
-        for (let y = 0; y < gridSize; y++) {
-            for (let x = 0; x < gridSize; x++) {
-                positions.push({ x: `${-x * 100}%`, y: `${-y * 100}%` });
-            }
+    for (let y = 0; y < gridSize; y++) {
+        for (let x = 0; x < gridSize; x++) {
+            positions.push({ x: `${-x * 100}%`, y: `${-y * 100}%` });
         }
+    }
 
-        const correctOrder = [...positions];
-        const shuffled = [...positions];
+    const correctOrder = [...positions];
+    const shuffled = [...positions];
 
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    shuffled.forEach((pos, i) => {
+        const piece = document.createElement("div");
+        piece.className = "piece";
+        piece.style.backgroundPosition = `${pos.x} ${pos.y}`;
+        piece.dataset.correct = `${correctOrder[i].x},${correctOrder[i].y}`;
+        piece.dataset.current = `${pos.x},${pos.y}`;
+        piece.draggable = true;
+        puzzle.appendChild(piece);
+    });
+
+    let dragged;
+    puzzle.addEventListener("dragstart", e => {
+        dragged = e.target;
+    });
+
+    puzzle.addEventListener("dragover", e => {
+        e.preventDefault();
+    });
+
+    puzzle.addEventListener("drop", e => {
+        if (e.target.classList.contains("piece") && e.target !== dragged) {
+            swapPieces(dragged, e.target);
         }
+    });
 
-        shuffled.forEach((pos, i) => {
-            const piece = document.createElement("div");
-            piece.className = "piece";
-            piece.style.backgroundPosition = `${pos.x} ${pos.y}`;
-            piece.dataset.correct = `${correctOrder[i].x},${correctOrder[i].y}`;
-            piece.dataset.current = `${pos.x},${pos.y}`;
-            piece.draggable = true;
-            puzzle.appendChild(piece);
-        });
-
-        let dragged;
-        puzzle.addEventListener("dragstart", e => {
-            dragged = e.target;
-        });
-
-        puzzle.addEventListener("dragover", e => {
-            e.preventDefault();
-        });
-
-        puzzle.addEventListener("drop", e => {
-            if (e.target.classList.contains("piece") && e.target !== dragged) {
-                swapPieces(dragged, e.target);
+    let firstTap = null;
+    puzzle.addEventListener("pointerdown", e => {
+    if (!e.target.classList.contains("piece")) return;
+        if (!firstTap) {
+            firstTap = e.target;
+            firstTap.style.outline = "3px solid #f06292";
+        } else {
+            if (e.target !== firstTap) {
+                swapPieces(firstTap, e.target);
             }
-        });
-
-        let firstTap = null;
-        puzzle.addEventListener("pointerdown", e => {
-            if (!e.target.classList.contains("piece")) return;
-                if (!firstTap) {
-                    firstTap = e.target;
-                    firstTap.style.outline = "3px solid #f06292";
-                } else {
-                    if (e.target !== firstTap) {
-                        swapPieces(firstTap, e.target);
-                    }
-                firstTap.style.outline = "none";
-                firstTap = null;
-            }
-        });
-
-        function swapPieces(a, b) {
-            const tempPos = a.style.backgroundPosition;
-            const tempData = a.dataset.current;
-
-            a.style.backgroundPosition = b.style.backgroundPosition;
-            a.dataset.current = b.dataset.current;
-
-            b.style.backgroundPosition = tempPos;
-            b.dataset.current = tempData;
-
-            checkCompletion();
+            firstTap.style.outline = "none";
+            firstTap = null;
         }
+    });
 
-        function checkCompletion() {
-            const pieces = document.querySelectorAll(".piece");
-            const allCorrect = [...pieces].every(p => p.dataset.current === p.dataset.correct);
-            if (allCorrect) {
-                puzzle.style.pointerEvents = "none";
+    function swapPieces(a, b) {
+        const tempPos = a.style.backgroundPosition;
+        const tempData = a.dataset.current;
+
+        a.style.backgroundPosition = b.style.backgroundPosition;
+        a.dataset.current = b.dataset.current;
+
+        b.style.backgroundPosition = tempPos;
+        b.dataset.current = tempData;
+
+        checkCompletion();
+    }
+
+    function checkCompletion() {
+        const pieces = document.querySelectorAll(".piece");
+        const allCorrect = [...pieces].every(p => p.dataset.current === p.dataset.correct);
+        if (allCorrect) {
+            puzzle.style.pointerEvents = "none";
 
             setTimeout(() => {
                 card.classList.add("flipped");
             }, 2000);
-            }
         }
-    </script>
-</body>
+    }
+
+    function verificarRespuesta(inputId, respuestaCorrecta, siguienteSala) {
+        const respuestaUsuario = document.getElementById(inputId).value.toLowerCase().trim(); // Convierte a minúsculas
+        if (respuestaUsuario === respuestaCorrecta.toLowerCase()) { // Compara ambas en minúsculas
+            document.getElementById(inputId).parentElement.classList.remove("visible");
+            document.getElementById(siguienteSala).classList.add("visible");
+        } else {
+            alert("¡Intenta de nuevo! 🌟");
+        }
+    }
+</script>
 </html>
