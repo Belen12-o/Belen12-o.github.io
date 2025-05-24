@@ -11,19 +11,19 @@
 </head>
 <body>
     <main>
-        <div class="texto">"Siempre juntos, como estrellas en el cielo."</div>
-        <div class="constelacion">
-            <div class="estrella estrella1"></div>
-            <div class="estrella estrella2"></div>
-            <div class="estrella estrella3"></div>
-            <div class="estrella estrella4"></div>
-            <div class="estrella estrella5"></div>
-
-            <div class="linea linea1"></div>
-            <div class="linea linea2"></div>
-            <div class="linea linea3"></div>
-            <div class="linea linea4"></div>
-        </div>
+        <div class="stars-container" id="starsContainer"></div>
+        <div class="message">Te amo mi amor, gracias por hacerme tan feliz este año</div>
     </main>
 </body>
+<script>
+    const container = document.getElementById("starsContainer");
+    for (let i = 0; i < 80; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.top = Math.random() * window.innerHeight + "px";
+        star.style.left = Math.random() * window.innerWidth + "px";
+        star.style.animationDuration = (Math.random() * 3 + 7) + "s, " + (Math.random() * 30 + 45) + "s";
+        container.appendChild(star);
+    }
+</script>
 </html>

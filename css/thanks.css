@@ -1,50 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+DK+Loopet:wght@100..400&display=swap');
 
 body {
+    margin: 0;
     background: black;
+    overflow: hidden;
+    font-family: 'Georgia', serif;
     color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+}
+
+.stars-container {
+    position: fixed;
+    width: 100%;
     height: 100vh;
-    flex-direction: column;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
 }
 
-.constelacion {
-    position: relative;
-    width: 300px;
-    height: 300px;
-}
-
-.estrella {
-    width: 6px;
-    height: 6px;
-    background: white;
-    border-radius: 50%;
+.star {
     position: absolute;
-}
-
-.linea {
-    position: absolute;
-    width: 100px;
+    width: 2px;
     height: 2px;
     background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: twinkle 5s infinite alternate ease-in-out, float 60s linear infinite;
 }
 
-.estrella1 { top: 20px; left: 50px; }
-.estrella2 { top: 100px; left: 120px; }
-.estrella3 { top: 200px; left: 80px; }
-.estrella4 { top: 250px; left: 200px; }
-.estrella5 { top: 50px; left: 220px; }
+@keyframes twinkle {
+    from { opacity: 0.2; }
+    to { opacity: 0.8; }
+}
 
-.linea1 { top: 30px; left: 60px; width: 70px; transform: rotate(30deg); }
-.linea2 { top: 110px; left: 100px; width: 80px; transform: rotate(-30deg); }
-.linea3 { top: 200px; left: 90px; width: 110px; transform: rotate(45deg); }
-.linea4 { top: 250px; left: 130px; width: 90px; transform: rotate(-20deg); }
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100vh); }
+}
 
-.texto {
-    font-size: 20px;
-    margin-bottom: 20px;
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+    font-size: 15px;
+    z-index: 1;
+    animation: fadeIn 3s ease-in-out;
+    text-shadow: 0 0 10px rgba(255,255,255,0.4);
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -45%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
 }
